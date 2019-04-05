@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+  redeam-book-api:
+    build: .
+    depends_on:
+      - 'mongo'
+    env_file:
+      - './local.env'
+    ports:
+      - '8080:8080'
+
+  mongo:
+    image: 'mongo:latest'
+    container_name: 'mongo'
+    ports:
+      - '27017:27017'
+
+  mongo_seed:
+    build: './mongo-seed'
