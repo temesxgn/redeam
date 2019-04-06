@@ -11,7 +11,7 @@ type service struct {
 	repository Repository
 }
 
-func (s *service) FindAll(filters bson.M, options *options.FindOptions) (Books, *BookApiError) {
+func (s *service) FindAll(filters bson.M, options *options.FindOptions) (Books, *BookAPIError) {
 	blogs, err := s.repository.FindAll(filters, options)
 	if err != nil {
 		return nil, err
@@ -20,11 +20,11 @@ func (s *service) FindAll(filters bson.M, options *options.FindOptions) (Books, 
 	return blogs, nil
 }
 
-func (s *service) FindOne(id string) (Book, *BookApiError) {
+func (s *service) FindOne(id string) (Book, *BookAPIError) {
 	return s.repository.FindOne(id)
 }
 
-func (s *service) Create(book Book) (string, *BookApiError) {
+func (s *service) Create(book Book) (string, *BookAPIError) {
 	doesExist := s.repository.IsExistingEntry(book)
 
 	if doesExist {
@@ -43,7 +43,7 @@ func (s *service) Create(book Book) (string, *BookApiError) {
 	return id, nil
 }
 
-func (s *service) Update(id string, book Book) *BookApiError {
+func (s *service) Update(id string, book Book) *BookAPIError {
 
 	if err := book.Validate(); err != nil {
 		return NewValidationError(err.Error())
@@ -58,7 +58,7 @@ func (s *service) Update(id string, book Book) *BookApiError {
 	return s.repository.Update(id, fields)
 }
 
-func (s *service) Delete(id string) *BookApiError {
+func (s *service) Delete(id string) *BookAPIError {
 
 	if _, err := s.repository.FindOne(id); err != nil {
 		return NewNotFoundError(id)
@@ -67,7 +67,7 @@ func (s *service) Delete(id string) *BookApiError {
 	return s.repository.Delete(id)
 }
 
-func (s *service) CheckOut(id string) *BookApiError {
+func (s *service) CheckOut(id string) *BookAPIError {
 	book, err := s.repository.FindOne(id)
 	if err != nil {
 		return NewNotFoundError(id)
@@ -88,7 +88,7 @@ func (s *service) CheckOut(id string) *BookApiError {
 	return nil
 }
 
-func (s *service) CheckIn(id string) *BookApiError {
+func (s *service) CheckIn(id string) *BookAPIError {
 	book, err := s.repository.FindOne(id)
 	if err != nil {
 		return NewNotFoundError(id)
@@ -109,7 +109,7 @@ func (s *service) CheckIn(id string) *BookApiError {
 	return nil
 }
 
-func (s *service) Rate(id string, rate int) *BookApiError {
+func (s *service) Rate(id string, rate int) *BookAPIError {
 	book, err := s.repository.FindOne(id)
 	if err != nil {
 		return NewNotFoundError(id)
@@ -129,6 +129,7 @@ func (s *service) Rate(id string, rate int) *BookApiError {
 	return nil
 }
 
+// NewService creates instance of service
 func NewService(repository Repository) Service {
 	return &service{repository: repository}
 }

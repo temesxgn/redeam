@@ -8,6 +8,7 @@ import (
 	"net/http"
 )
 
+// Routes Application Routes
 func Routes() *chi.Mux {
 	router := chi.NewRouter()
 	router.Use(

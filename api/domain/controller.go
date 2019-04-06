@@ -29,8 +29,8 @@ func (c *Controller) GetAll(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
-// GetById handles REST API Get '/{id}' Endpoint
-func (c *Controller) GetById(w http.ResponseWriter, r *http.Request) {
+// GetByID handles REST API Get '/{id}' Endpoint
+func (c *Controller) GetByID(w http.ResponseWriter, r *http.Request) {
 	responseBuilder := utils.ResponseBuilder{}
 	id := chi.URLParam(r, "id")
 
@@ -153,7 +153,7 @@ func (c *Controller) CheckOut(w http.ResponseWriter, r *http.Request) {
 	responseBuilder.OK(w, []byte(nil))
 }
 
-// CheckOut handles REST API PUT '/checkin/{id}' Endpoint
+// CheckIn handles REST API PUT '/checkin/{id}' Endpoint
 func (c *Controller) CheckIn(w http.ResponseWriter, r *http.Request) {
 	responseBuilder := utils.ResponseBuilder{}
 	id := chi.URLParam(r, "id")
@@ -180,7 +180,7 @@ func (c *Controller) CheckIn(w http.ResponseWriter, r *http.Request) {
 	responseBuilder.OK(w, []byte(nil))
 }
 
-// CheckOut handles REST API PUT '/{id}/rate/{id}' Endpoint
+// Rate handles REST API PUT '/{id}/rate/{id}' Endpoint
 func (c *Controller) Rate(w http.ResponseWriter, r *http.Request) {
 	responseBuilder := utils.ResponseBuilder{}
 	id := chi.URLParam(r, "id")

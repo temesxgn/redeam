@@ -7,7 +7,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-/** ======== Book Model ========*/
+// Book slice of books
 type Books []Book
 
 // Book model for Book schema
@@ -22,7 +22,7 @@ type Book struct {
 }
 
 // Validate validates the Book fields.
-func (b Book) Validate() *BookApiError {
+func (b Book) Validate() *BookAPIError {
 	errors := validation.ValidateStruct(&b,
 		validation.Field(&b.Author, validation.Required, validation.Length(1, 30)),
 		validation.Field(&b.Title, validation.Required, validation.Length(1, 50)),
@@ -34,14 +34,15 @@ func (b Book) Validate() *BookApiError {
 
 	if errors != nil {
 		return NewValidationError(errors.Error())
-	} else {
-		return nil
 	}
+
+	return nil
 }
 
-/** ======== Status Model ========*/
+// Status
 type Status int
 
+// Status options
 const (
 	Unknown Status = iota
 	CheckedIn
@@ -63,7 +64,7 @@ func (status Status) String() string {
 	return names[status]
 }
 
-/** ======== Query Criterion Model ========*/
+// QueryOperator possible query operations
 type QueryOperator string
 
 const (
@@ -83,22 +84,22 @@ type Query struct {
 
 /** ======== Repository Interface ========*/
 type Repository interface {
-	FindAll(filters bson.M, findOptions *options.FindOptions) (Books, *BookApiError)
-	FindOne(id string) (Book, *BookApiError)
-	Update(id string, fields bson.D) *BookApiError
-	Delete(id string) *BookApiError
+	FindAll(filters bson.M, findOptions *options.FindOptions) (Books, *BookAPIError)
+	FindOne(id string) (Book, *BookAPIError)
+	Update(id string, fields bson.D) *BookAPIError
+	Delete(id string) *BookAPIError
 	IsExistingEntry(book Book) bool
-	Save(book Book) (string, *BookApiError)
+	Save(book Book) (string, *BookAPIError)
 }
 
 /** ======== Service Interface ========*/
 type Service interface {
-	FindAll(filters bson.M, findOptions *options.FindOptions) (Books, *BookApiError)
-	FindOne(id string) (Book, *BookApiError)
-	Update(id string, book Book) *BookApiError
-	Delete(id string) *BookApiError
-	CheckOut(id string) *BookApiError
-	CheckIn(id string) *BookApiError
-	Create(book Book) (string, *BookApiError)
-	Rate(id string, rate int) *BookApiError
+	FindAll(filters bson.M, findOptions *options.FindOptions) (Books, *BookAPIError)
+	FindOne(id string) (Book, *BookAPIError)
+	Update(id string, book Book) *BookAPIError
+	Delete(id string) *BookAPIError
+	CheckOut(id string) *BookAPIError
+	CheckIn(id string) *BookAPIError
+	Create(book Book) (string, *BookAPIError)
+	Rate(id string, rate int) *BookAPIError
 }

@@ -5,8 +5,8 @@ import (
 	"github.com/temesxgn/redeam/api/domain"
 )
 
-// Enabled Routes for /books path
-func Routes() (*chi.Mux, *domain.BookApiError) {
+// Routes - Enabled Routes for /books path
+func Routes() (*chi.Mux, *domain.BookAPIError) {
 	router := chi.NewRouter()
 	repo, err := domain.NewRepository()
 	service := domain.NewService(repo)
@@ -14,13 +14,12 @@ func Routes() (*chi.Mux, *domain.BookApiError) {
 	router.Get("/", ctrl.GetAll)
 	router.Post("/", ctrl.Create)
 
-	router.Get("/{id}", ctrl.GetById)
+	router.Get("/{id}", ctrl.GetByID)
 	router.Put("/{id}", ctrl.Update)
 	router.Delete("/{id}", ctrl.Delete)
 
 	router.Put("/checkout/{id}", ctrl.CheckOut)
 	router.Put("/checkin/{id}", ctrl.CheckIn)
-
 	router.Put("/{id}/rate/{rate}", ctrl.Rate)
 
 	return router, err

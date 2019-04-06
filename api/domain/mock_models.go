@@ -35,11 +35,11 @@ func (m *MockRepository) EXPECT() *MockRepositoryMockRecorder {
 }
 
 // FindAll mocks base method
-func (m *MockRepository) FindAll(filters bson.M, findOptions *options.FindOptions) (Books, *BookApiError) {
+func (m *MockRepository) FindAll(filters bson.M, findOptions *options.FindOptions) (Books, *BookAPIError) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "FindAll", filters, findOptions)
 	ret0, _ := ret[0].(Books)
-	ret1, _ := ret[1].(*BookApiError)
+	ret1, _ := ret[1].(*BookAPIError)
 	return ret0, ret1
 }
 
@@ -50,11 +50,11 @@ func (mr *MockRepositoryMockRecorder) FindAll(filters, findOptions interface{}) 
 }
 
 // FindOne mocks base method
-func (m *MockRepository) FindOne(id string) (Book, *BookApiError) {
+func (m *MockRepository) FindOne(id string) (Book, *BookAPIError) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "FindOne", id)
 	ret0, _ := ret[0].(Book)
-	ret1, _ := ret[1].(*BookApiError)
+	ret1, _ := ret[1].(*BookAPIError)
 	return ret0, ret1
 }
 
@@ -65,10 +65,10 @@ func (mr *MockRepositoryMockRecorder) FindOne(id interface{}) *gomock.Call {
 }
 
 // Update mocks base method
-func (m *MockRepository) Update(id string, fields bson.D) *BookApiError {
+func (m *MockRepository) Update(id string, fields bson.D) *BookAPIError {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Update", id, fields)
-	ret0, _ := ret[0].(*BookApiError)
+	ret0, _ := ret[0].(*BookAPIError)
 	return ret0
 }
 
@@ -79,10 +79,10 @@ func (mr *MockRepositoryMockRecorder) Update(id, fields interface{}) *gomock.Cal
 }
 
 // Delete mocks base method
-func (m *MockRepository) Delete(id string) *BookApiError {
+func (m *MockRepository) Delete(id string) *BookAPIError {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Delete", id)
-	ret0, _ := ret[0].(*BookApiError)
+	ret0, _ := ret[0].(*BookAPIError)
 	return ret0
 }
 
@@ -107,11 +107,11 @@ func (mr *MockRepositoryMockRecorder) IsExistingEntry(book interface{}) *gomock.
 }
 
 // Save mocks base method
-func (m *MockRepository) Save(book Book) (string, *BookApiError) {
+func (m *MockRepository) Save(book Book) (string, *BookAPIError) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Save", book)
 	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(*BookApiError)
+	ret1, _ := ret[1].(*BookAPIError)
 	return ret0, ret1
 }
 
@@ -145,11 +145,11 @@ func (m *MockService) EXPECT() *MockServiceMockRecorder {
 }
 
 // FindAll mocks base method
-func (m *MockService) FindAll(filters bson.M, findOptions *options.FindOptions) (Books, *BookApiError) {
+func (m *MockService) FindAll(filters bson.M, findOptions *options.FindOptions) (Books, *BookAPIError) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "FindAll", filters, findOptions)
 	ret0, _ := ret[0].(Books)
-	ret1, _ := ret[1].(*BookApiError)
+	ret1, _ := ret[1].(*BookAPIError)
 	return ret0, ret1
 }
 
@@ -160,11 +160,11 @@ func (mr *MockServiceMockRecorder) FindAll(filters, findOptions interface{}) *go
 }
 
 // FindOne mocks base method
-func (m *MockService) FindOne(id string) (Book, *BookApiError) {
+func (m *MockService) FindOne(id string) (Book, *BookAPIError) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "FindOne", id)
 	ret0, _ := ret[0].(Book)
-	ret1, _ := ret[1].(*BookApiError)
+	ret1, _ := ret[1].(*BookAPIError)
 	return ret0, ret1
 }
 
@@ -175,10 +175,10 @@ func (mr *MockServiceMockRecorder) FindOne(id interface{}) *gomock.Call {
 }
 
 // Update mocks base method
-func (m *MockService) Update(id string, book Book) *BookApiError {
+func (m *MockService) Update(id string, book Book) *BookAPIError {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Update", id, book)
-	ret0, _ := ret[0].(*BookApiError)
+	ret0, _ := ret[0].(*BookAPIError)
 	return ret0
 }
 
@@ -189,10 +189,10 @@ func (mr *MockServiceMockRecorder) Update(id, book interface{}) *gomock.Call {
 }
 
 // Delete mocks base method
-func (m *MockService) Delete(id string) *BookApiError {
+func (m *MockService) Delete(id string) *BookAPIError {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Delete", id)
-	ret0, _ := ret[0].(*BookApiError)
+	ret0, _ := ret[0].(*BookAPIError)
 	return ret0
 }
 
@@ -203,10 +203,10 @@ func (mr *MockServiceMockRecorder) Delete(id interface{}) *gomock.Call {
 }
 
 // CheckOut mocks base method
-func (m *MockService) CheckOut(id string) *BookApiError {
+func (m *MockService) CheckOut(id string) *BookAPIError {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CheckOut", id)
-	ret0, _ := ret[0].(*BookApiError)
+	ret0, _ := ret[0].(*BookAPIError)
 	return ret0
 }
 
@@ -217,10 +217,10 @@ func (mr *MockServiceMockRecorder) CheckOut(id interface{}) *gomock.Call {
 }
 
 // CheckIn mocks base method
-func (m *MockService) CheckIn(id string) *BookApiError {
+func (m *MockService) CheckIn(id string) *BookAPIError {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CheckIn", id)
-	ret0, _ := ret[0].(*BookApiError)
+	ret0, _ := ret[0].(*BookAPIError)
 	return ret0
 }
 
@@ -231,11 +231,11 @@ func (mr *MockServiceMockRecorder) CheckIn(id interface{}) *gomock.Call {
 }
 
 // Create mocks base method
-func (m *MockService) Create(book Book) (string, *BookApiError) {
+func (m *MockService) Create(book Book) (string, *BookAPIError) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Create", book)
 	ret0, _ := ret[0].(string)
-	ret1, _ := ret[1].(*BookApiError)
+	ret1, _ := ret[1].(*BookAPIError)
 	return ret0, ret1
 }
 
@@ -246,10 +246,10 @@ func (mr *MockServiceMockRecorder) Create(book interface{}) *gomock.Call {
 }
 
 // Rate mocks base method
-func (m *MockService) Rate(id string, rate int) *BookApiError {
+func (m *MockService) Rate(id string, rate int) *BookAPIError {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Rate", id, rate)
-	ret0, _ := ret[0].(*BookApiError)
+	ret0, _ := ret[0].(*BookAPIError)
 	return ret0
 }
 

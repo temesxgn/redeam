@@ -16,7 +16,7 @@ var db *mongo.Collection
 
 // FindAll Queries MongoDB with optional filters on custom attributes and Collection options
 // It returns a list of paginated Books or an API Error Response
-func (r *repo) FindAll(filters bson.M, findOptions *options.FindOptions) (Books, *BookApiError) {
+func (r *repo) FindAll(filters bson.M, findOptions *options.FindOptions) (Books, *BookAPIError) {
 	cur, colErr := db.Find(nil, filters, findOptions)
 	if colErr != nil {
 		return nil, NewDatabaseOperationError(colErr.Error())
@@ -42,10 +42,10 @@ func (r *repo) FindAll(filters bson.M, findOptions *options.FindOptions) (Books,
 
 // FineOne Queries MongoDB for a specific Book
 // It returns one Book or an API Error Response
-func (r *repo) FindOne(id string) (Book, *BookApiError) {
+func (r *repo) FindOne(id string) (Book, *BookAPIError) {
 	var book = Book{}
-	objectId, _ := primitive.ObjectIDFromHex(id)
-	filter := bson.D{{"_id", objectId}}
+	objectID, _ := primitive.ObjectIDFromHex(id)
+	filter := bson.D{{"_id", objectID}}
 	decodeErr := db.FindOne(nil, filter).Decode(&book)
 	if decodeErr == mongo.ErrNoDocuments {
 		return book, NewNotFoundError(id)
@@ -56,9 +56,9 @@ func (r *repo) FindOne(id string) (Book, *BookApiError) {
 
 // Delete Hard deletes the Book with the specified ID
 // It returns an API Error Response if failed
-func (r *repo) Delete(id string) *BookApiError {
-	objectId, _ := primitive.ObjectIDFromHex(id)
-	_, deleteError := db.DeleteOne(nil, bson.D{{"_id", objectId}})
+func (r *repo) Delete(id string) *BookAPIError {
+	objectID, _ := primitive.ObjectIDFromHex(id)
+	_, deleteError := db.DeleteOne(nil, bson.D{{"_id", objectID}})
 	if deleteError != nil {
 		return NewDatabaseOperationError(deleteError.Error())
 	}
@@ -68,9 +68,9 @@ func (r *repo) Delete(id string) *BookApiError {
 
 // Update updates the Book with the specified ID
 // It returns an API Error Response if failed
-func (r *repo) Update(id string, updatedFields bson.D) *BookApiError {
-	objectId, _ := primitive.ObjectIDFromHex(id)
-	filter := bson.D{{"_id", objectId}}
+func (r *repo) Update(id string, updatedFields bson.D) *BookAPIError {
+	objectID, _ := primitive.ObjectIDFromHex(id)
+	filter := bson.D{{"_id", objectID}}
 	_, updateError := db.UpdateOne(nil, filter, updatedFields)
 	if updateError != nil {
 		return NewDatabaseOperationError(updateError.Error())
@@ -95,7 +95,7 @@ func (r *repo) IsExistingEntry(book Book) bool {
 
 // Save Saves the Book Payload
 // It returns the persisted Book ID or an API Error Response if failed
-func (r *repo) Save(book Book) (string, *BookApiError) {
+func (r *repo) Save(book Book) (string, *BookAPIError) {
 	created, insertError := db.InsertOne(nil, book)
 	if insertError != nil {
 		return "", NewPersistError(insertError.Error())
@@ -106,7 +106,7 @@ func (r *repo) Save(book Book) (string, *BookApiError) {
 
 // NewRepository Initializes a repository instance
 // It returns an API Error Response if failed
-func NewRepository() (Repository, *BookApiError) {
+func NewRepository() (Repository, *BookAPIError) {
 	server, serverPresent := os.LookupEnv("mongodb_url")
 	if !serverPresent {
 		return nil, NewMissingEnvVariable("need to set mongodb_url environment variable")

@@ -55,7 +55,7 @@ func TestController_GetAll_WithError(t *testing.T) {
 	assert.True(t, bytes.Contains(wr.Body.Bytes(), []byte("error")))
 }
 
-func TestController_GetById(t *testing.T) {
+func TestController_GetByID(t *testing.T) {
 	testBook := Book{
 		ID:     primitive.NewObjectID(),
 		Author: "thg090020",
@@ -65,7 +65,7 @@ func TestController_GetById(t *testing.T) {
 	bookService.EXPECT().FindOne(testBook.ID.Hex()).Return(testBook, nil)
 	bookController := NewController(bookService)
 	router := chi.NewRouter()
-	router.Get("/books/{id}", bookController.GetById)
+	router.Get("/books/{id}", bookController.GetByID)
 
 	server := httptest.NewServer(router)
 	defer server.Close()
@@ -79,12 +79,12 @@ func TestController_GetById(t *testing.T) {
 	assert.True(t, bytes.Contains(body, []byte("thg090020")))
 }
 
-func TestController_GetByIdWithNotFound(t *testing.T) {
+func TestController_GetByIDWithNotFound(t *testing.T) {
 	bookService := NewMockService(gomock.NewController(t))
 	bookService.EXPECT().FindOne(gomock.Any()).Return(Book{}, NewNotFoundError("Not found"))
 	bookController := NewController(bookService)
 	router := chi.NewRouter()
-	router.Get("/books/{id}", bookController.GetById)
+	router.Get("/books/{id}", bookController.GetByID)
 
 	server := httptest.NewServer(router)
 	defer server.Close()
@@ -95,7 +95,7 @@ func TestController_GetByIdWithNotFound(t *testing.T) {
 	assert.Equal(t, http.StatusNotFound, res.StatusCode, `Invalid response... Expected 404 but got %d`, res.StatusCode)
 }
 
-func TestController_GetByIdWithInternalError(t *testing.T) {
+func TestController_GetByIDWithInternalError(t *testing.T) {
 	testBook := Book{
 		ID:     primitive.NewObjectID(),
 		Author: "thg090020",
@@ -105,7 +105,7 @@ func TestController_GetByIdWithInternalError(t *testing.T) {
 	bookService.EXPECT().FindOne(gomock.Any()).Return(Book{}, NewDatabaseOperationError("Internal error"))
 	bookController := NewController(bookService)
 	router := chi.NewRouter()
-	router.Get("/books/{id}", bookController.GetById)
+	router.Get("/books/{id}", bookController.GetByID)
 
 	server := httptest.NewServer(router)
 	defer server.Close()
