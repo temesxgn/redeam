@@ -1,7 +1,7 @@
 version: '3.3'
 
 services:
-  redeam-book-api:
+  book-api:
     build: .
     depends_on:
       - 'mongo'
