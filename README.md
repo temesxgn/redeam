@@ -52,6 +52,7 @@ redeam/
 |:-------------------------------------------|:----------------------------------|
 | [GET /books](#get-books)                   | Returns a list of paginated books, 10 per page |
 | [GET /books/[id]](#get-book)               | Returns specified book |
+| [DELETE /books/[id]](#get-book)            | Deletes specified book |
 | [POST /books](#post-book)                  | Creates a new book if no duplicate entry based on author, title, publish date fields|
 | [PUT /books](#put-book)                    | Updates an existing book |
 | [PUT /books/checkout/[id]](#checkout-book) | Checks out a book |
@@ -95,8 +96,7 @@ Testing uses [GoMock](https://github.com/golang/mock) to generate mocking entiti
 Once installed, go to domain directory and run mockgen -source=entity_models.go -destination=mock_models.go or run the generate-mocks script in the scripts folder
 
 ## TODO
-
-* Update endpoints to return response models
-* Add advanced filtering & Sorting using the query models
-* Mock database connection
+* Update endpoints to return common response models
+* Add advanced filtering & Sorting using the query models in entity_models.go
+* Mock database connection for unit test
 * Finish updating README
