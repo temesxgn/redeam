@@ -12,33 +12,30 @@ type QueryBuilder struct{}
 
 const (
 	defaultSize  = 10
-	defaultOrder = "asc"
+	defaultPage  = 1
+	defaultOrder = 1
+	defaultSort  = "_id"
 )
 
 // GetQueryParams returns mongodb filters and findOptions to restrict query results
 func (builder *QueryBuilder) GetQueryParams(r *http.Request) (bson.M, *options.FindOptions) {
 	queries := r.URL.Query()
 	filters := bson.M{}
-	findOptions := options.Find().SetLimit(defaultSize)
+	findOptions := options.Find().SetLimit(defaultSize).SetSkip(defaultPage).SetSort(bson.M{defaultSort: defaultOrder})
 
 	// TODO Split into multiple functions and use custom Query model in entity_models.go file
 	for k, v := range queries {
 		switch k {
 		case "size":
-			size, _ := strconv.ParseInt(r.URL.Query().Get("size"), 10, 64)
-			if size == 0 {
-				size = 10
+			if size, _ := strconv.ParseInt(v[0], 10, 64); size > 0 {
+				findOptions = findOptions.SetLimit(size)
 			}
 
-			findOptions = findOptions.SetLimit(size)
 		case "page":
-			page, _ := strconv.ParseInt(v[0], 10, 64)
-			if page < 1 {
-				page = 1
+			if page, _ := strconv.ParseInt(v[0], 10, 64); page > 0 {
+				findOptions = findOptions.SetSkip(page)
 			}
 
-			skip := *findOptions.Limit * (page - 1)
-			findOptions = findOptions.SetSkip(skip)
 		case "author":
 			filters["author"] = strings.Replace(v[0], "+", " ", -1)
 
@@ -48,5 +45,7 @@ func (builder *QueryBuilder) GetQueryParams(r *http.Request) (bson.M, *options.F
 		}
 	}
 
+	skip := *findOptions.Limit * (*findOptions.Skip - 1)
+	findOptions = findOptions.SetSkip(skip)
 	return filters, findOptions
 }

@@ -64,6 +64,13 @@ func (status Status) String() string {
 	return names[status]
 }
 
+type SortOrder int
+
+const (
+	ASC  SortOrder = 1
+	DESC           = -1
+)
+
 // QueryOperator possible query operations
 type QueryOperator string
 

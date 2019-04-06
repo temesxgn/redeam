@@ -6,7 +6,6 @@
 * [Routes](#routes)
 * [Request & Response Examples](#request--response-examples)
 * [Testing](#testing)
-* [Known Issues](#known-issues)
 * [TODO](#todo)
 
 ## Running
@@ -61,7 +60,7 @@ redeam/
 
 ## Request & Response Examples
 ### GET /books
-##### Available query params: i.e. books?status=1
+##### Available query params: i.e. books?status=1 books?author=Robert+Martin
 * page
 * size
 * status
@@ -100,3 +99,7 @@ Once installed, go to domain directory and run mockgen -source=entity_models.go 
 * Add advanced filtering & Sorting using the query models in entity_models.go
 * Mock database connection for unit test
 * Finish updating README
+* Better format validation
+* Generate Swagger
+* Add Go version of logback
+* Integrate QueryDSL
