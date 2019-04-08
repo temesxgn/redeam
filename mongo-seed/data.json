@@ -14,5 +14,77 @@
     "status": 1,
     "rating": 0,
     "publish_date": "2008"
+  },
+  {
+    "author": "Robert Martin",
+    "title": "Clean Coder",
+    "publisher": "Prentice Hall",
+    "status": 1,
+    "rating": 0,
+    "publish_date": "2011"
+  },
+  {
+    "author": "Robert Martin",
+    "title": "Clean Architecture",
+    "publisher": "Prentice Hall",
+    "status": 1,
+    "rating": 0,
+    "publish_date": "2017"
+  },
+  {
+    "author": "Bobby Hall",
+    "title": "Supermarket",
+    "publisher": "Simon & Schuster",
+    "status": 1,
+    "rating": 0,
+    "publish_date": "2019"
+  },
+  {
+    "author": "Test 1",
+    "title": "title",
+    "publisher": "Prentice Hall",
+    "status": 1,
+    "rating": 0,
+    "publish_date": "2008"
+  },
+  {
+    "author": "thg090020",
+    "title": "Clean Code",
+    "publisher": "Prentice Hall",
+    "status": 1,
+    "rating": 0,
+    "publish_date": "2008"
+  },
+  {
+    "author": "Robert",
+    "title": "Clean Code",
+    "publisher": "Prentice Hall",
+    "status": 1,
+    "rating": 0,
+    "publish_date": "2008"
+  },
+  {
+    "author": "Martin",
+    "title": "Clean Code",
+    "publisher": "Prentice Hall",
+    "status": 1,
+    "rating": 0,
+    "publish_date": "2008"
+  },
+  {
+    "author": "RobertMartin",
+    "title": "Clean Code",
+    "publisher": "Prentice Hall",
+    "status": 1,
+    "rating": 0,
+    "publish_date": "2008"
+  },
+  {
+    "author": "thg090020",
+    "title": "Hey THere",
+    "publisher": "Prentice Hall",
+    "status": 1,
+    "rating": 0,
+    "publish_date": "2008"
   }
 ]
