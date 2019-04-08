@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo ============= Downloading Dependencies =============
+dep ensure --vendor-only
+
 echo ============= Building Development API =============
 docker build -f ../Dockerfile.local -t redeam/book-api ..
 
